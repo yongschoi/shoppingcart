@@ -1,0 +1,69 @@
+spring:
+  profiles:
+    active: window-dev
+
+---
+server:
+  port: 7010
+
+logging:
+  level:
+    yongs:
+      temp: DEBUG
+      
+spring:
+  profiles: window-dev
+  application:
+    name: yongs-shoppingcart
+  sleuth:
+    sampler:
+      probability: 1
+  zipkin:
+    baseUrl: http://localhost:9411/
+  redis:
+    host: localhost
+    port: 6379
+              
+eureka:
+  instance:
+    preferIpAddress: true
+    hostname: localhost
+  client:
+    registerWithEureka: true 
+    fetchRegistry: true
+    enabled: true
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka/  
+---
+server:
+  port: 7010
+              
+logging:
+  level:
+    yongs:
+      temp: DEBUG
+    
+spring:
+  profiles: docker-dev
+  application:
+    name: yongs-shoppingcart
+  sleuth:
+    sampler:
+      probability: 1
+  zipkin:
+    baseUrl: http://zipkin-server:9411/
+  redis:
+    host: shopping-cart
+    port: 6379
+                             
+eureka:
+  instance:
+    preferIpAddress: true
+    hostname: eureka-server
+  client:
+    registerWithEureka: true 
+    fetchRegistry: true
+    enabled: true
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka/
+      

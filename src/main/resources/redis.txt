@@ -1,0 +1,5 @@
+@Resource(name = "redisTemplate") 
+private HashOperations<String, String, String> hashOperations;
+    
+hashOperations.put("scott", "10001", "1"); 
+hashOperations.put("scott", "10002", "3");    
